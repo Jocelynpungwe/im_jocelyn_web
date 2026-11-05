@@ -1,0 +1,569 @@
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  font-family:
+    Inter,
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    sans-serif;
+
+  color: #f8fafc;
+  background: #05070d;
+
+  font-synthesis: none;
+
+  /* ========================================
+     CRM DARK THEME
+  ======================================== */
+
+  --page-bg: #05070d;
+  --section-bg: #070b12;
+
+  --card-bg: #0b0e17;
+  --card-bg-light: #111522;
+
+  --text-primary: #f8fafc;
+  --text-secondary: #9ca3b5;
+  --text-muted: #6f7688;
+
+  --border: rgba(255, 255, 255, 0.08);
+  --border-light: rgba(255, 255, 255, 0.12);
+
+  --blue-400: #8090ff;
+  --blue-500: #6878ff;
+  --blue-600: #5268ff;
+  --blue-700: #4356dc;
+
+  --purple: #8c7cff;
+
+  --black: #05070d;
+  --white: #ffffff;
+
+  --gray-50: #111522;
+  --gray-100: #0f1420;
+  --gray-500: #9ca3b5;
+  --gray-700: #cbd5e1;
+  --gray-900: #f8fafc;
+}
+
+html {
+  background: var(--page-bg);
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+
+  background:
+    radial-gradient(
+      circle at 80% 0%,
+      rgba(82, 104, 255, 0.08),
+      transparent 30%
+    ),
+    var(--page-bg);
+
+  color: var(--text-primary);
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ========================================
+   APP SHELL
+======================================== */
+
+/* ========================================
+   SIDEBAR
+======================================== */
+
+.brand {
+  font-size: 23px;
+  font-weight: 800;
+
+  color: white;
+
+  padding: 0 14px 28px;
+}
+
+.brand span {
+  color: #6878ff;
+}
+
+.brand.large {
+  font-size: 30px;
+
+  padding: 0;
+
+  margin-bottom: 24px;
+}
+
+/* ========================================
+   MAIN
+======================================== */
+
+/* ========================================
+   TOPBAR
+======================================== */
+
+/* ========================================
+   AVATAR
+======================================== */
+
+.profile-avatar {
+  border-radius: 50%;
+
+  background: linear-gradient(135deg, #5268ff, #8c7cff);
+
+  color: white;
+
+  display: grid;
+
+  place-items: center;
+
+  font-weight: 700;
+
+  box-shadow: 0 0 25px rgba(82, 104, 255, 0.2);
+}
+
+.profile-avatar img {
+  width: 100%;
+
+  height: 100%;
+
+  object-fit: cover;
+}
+
+/* ========================================
+   CONTENT
+======================================== */
+
+.content {
+  padding: 30px;
+
+  max-width: 1600px;
+
+  margin: auto;
+}
+
+/* ========================================
+   PAGE HEADING
+======================================== */
+
+/* ========================================
+   STATS
+======================================== */
+
+/* ========================================
+   DASHBOARD GRID
+======================================== */
+
+/* ========================================
+   PANELS
+======================================== */
+
+/* ========================================
+   CHARTS
+======================================== */
+
+.empty {
+  display: grid;
+
+  place-items: center;
+
+  color: #687184;
+
+  height: 100%;
+
+  text-align: center;
+}
+
+/* ========================================
+   PERFORMANCE
+======================================== */
+
+.performance {
+  display: flex;
+
+  align-items: center;
+
+  gap: 30px;
+
+  padding: 10px 5px;
+}
+
+/* ========================================
+   DEAL STATS
+======================================== */
+
+/* ========================================
+   TOP DEALS
+======================================== */
+
+/* ========================================
+   TABLE
+======================================== */
+
+table {
+  width: 100%;
+
+  border-collapse: collapse;
+
+  font-size: 13px;
+}
+
+th {
+  text-align: left;
+
+  color: #7e8799;
+
+  font-size: 11px;
+
+  font-weight: 700;
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.04em;
+
+  background: rgba(255, 255, 255, 0.025);
+}
+
+th,
+td {
+  padding: 13px 12px;
+
+  border-bottom: 1px solid var(--border);
+
+  white-space: nowrap;
+}
+
+td {
+  color: #d7dbe5;
+}
+
+td small {
+  display: block;
+
+  color: #687184;
+
+  font-size: 11px;
+
+  margin-top: 3px;
+}
+
+/* ========================================
+   STATUS
+======================================== */
+
+.status {
+  display: inline-flex;
+
+  padding: 5px 9px;
+
+  border-radius: 999px;
+
+  font-size: 11px;
+
+  text-transform: capitalize;
+
+  font-weight: 700;
+}
+
+.status.approved {
+  background: rgba(34, 197, 94, 0.12);
+
+  color: #6ee7a0;
+
+  border: 1px solid rgba(34, 197, 94, 0.15);
+}
+
+.status.rejected {
+  background: rgba(239, 68, 68, 0.12);
+
+  color: #fca5a5;
+
+  border: 1px solid rgba(239, 68, 68, 0.15);
+}
+
+.status.pending {
+  background: rgba(245, 158, 11, 0.12);
+
+  color: #fcd34d;
+
+  border: 1px solid rgba(245, 158, 11, 0.15);
+}
+
+.status.new {
+  background: rgba(82, 104, 255, 0.12);
+
+  color: #9ba7ff;
+
+  border: 1px solid rgba(82, 104, 255, 0.15);
+}
+
+/* ========================================
+   FILTERS
+======================================== */
+
+input,
+select,
+textarea {
+  width: 100%;
+
+  border: 1px solid rgba(255, 255, 255, 0.1);
+
+  background: #0b0e17;
+
+  border-radius: 8px;
+
+  padding: 10px 11px;
+
+  outline: none;
+
+  color: #f8fafc;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #5f6778;
+}
+
+select {
+  color: #f8fafc;
+}
+
+select option {
+  background: #0b0e17;
+
+  color: #f8fafc;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: #5268ff;
+
+  box-shadow: 0 0 0 3px rgba(82, 104, 255, 0.12);
+}
+
+.check {
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  padding: 0 5px;
+
+  font-size: 13px;
+
+  color: #9ca3b5;
+}
+
+.check input {
+  width: auto;
+}
+
+/* ========================================
+   BUTTONS
+======================================== */
+
+.primary-btn,
+.secondary-btn {
+  border: 0;
+
+  border-radius: 8px;
+
+  padding: 11px 15px;
+
+  cursor: pointer;
+
+  font-weight: 700;
+
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 7px;
+
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.primary-btn {
+  background: linear-gradient(135deg, #5268ff, #6878ff);
+
+  color: white;
+
+  box-shadow: 0 8px 25px rgba(82, 104, 255, 0.18);
+}
+
+.primary-btn:hover {
+  background: linear-gradient(135deg, #6878ff, #8090ff);
+
+  transform: translateY(-2px);
+
+  box-shadow: 0 12px 30px rgba(82, 104, 255, 0.25);
+}
+
+.primary-btn:disabled {
+  opacity: 0.6;
+
+  cursor: not-allowed;
+}
+
+.secondary-btn {
+  background: rgba(255, 255, 255, 0.06);
+
+  color: #d7dbe5;
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.secondary-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* ========================================
+   FORMS
+======================================== */
+
+/* ========================================
+   PROFILE
+======================================== */
+
+.profile-card {
+  display: flex;
+
+  align-items: center;
+
+  gap: 25px;
+}
+
+.profile-avatar {
+  width: 110px;
+
+  height: 110px;
+
+  font-size: 30px;
+
+  overflow: hidden;
+}
+
+.profile-info h2 {
+  margin: 0 0 5px;
+
+  color: #f8fafc;
+}
+
+.profile-info p {
+  margin: 0 0 10px;
+
+  color: #7e8799;
+}
+
+.role-badge {
+  background: rgba(82, 104, 255, 0.12);
+
+  color: #9ba7ff;
+
+  padding: 5px 9px;
+
+  border-radius: 999px;
+
+  text-transform: capitalize;
+
+  font-size: 11px;
+
+  font-weight: 700;
+
+  border: 1px solid rgba(82, 104, 255, 0.15);
+}
+
+.permission-list {
+  display: flex;
+
+  gap: 8px;
+
+  flex-wrap: wrap;
+}
+
+.permission-list span {
+  background: rgba(255, 255, 255, 0.05);
+
+  border: 1px solid rgba(255, 255, 255, 0.07);
+
+  color: #aeb5c4;
+
+  padding: 8px 10px;
+
+  border-radius: 7px;
+
+  font-size: 12px;
+}
+
+/* ========================================
+   ALERTS
+======================================== */
+
+/* ========================================
+   LOADING
+======================================== */
+
+/* ========================================
+   AUTH
+======================================== */
+
+/* ========================================
+   HERO GRID
+======================================== */
+
+/* ========================================
+   WEBSITE CARD
+======================================== */
+
+/* ========================================
+   FLOATING ANIMATION
+======================================== */
+
+/* ========================================
+   RESPONSIVE
+======================================== */
+
+@media (max-width: 800px) {
+
+  .content {
+    padding: 18px;
+  }
+}
+
+@media (max-width: 500px) {
+
+  .profile-card {
+    flex-direction: column;
+
+    text-align: center;
+  }
+}

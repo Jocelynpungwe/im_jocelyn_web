@@ -1,263 +1,163 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
-import {
-  ArrowUpRight,
-  Layers3,
-  Rocket,
-  Target,
-  TrendingUp,
-} from 'lucide-react'
-
-import LuxPageHero from '../components/public/lux/LuxPageHero.jsx'
-import { AboutVisual } from '../components/public/lux/HeroVisuals.jsx'
-import Reveal from '../components/public/lux/Reveal.jsx'
-import { ClientTestimonials } from '../components/public/lux/Testimonials.jsx'
-
-const principles = [
-  {
-    number: '01',
-    label: 'Build',
-    title: 'Build the digital foundation.',
-    text: 'Turn your idea into a professional digital presence designed around your business and your customers.',
-    tags: ['Website', 'E-commerce', 'Web applications', 'Landing pages'],
-  },
-  {
-    number: '02',
-    label: 'Grow',
-    title: 'Get discovered and attract customers.',
-    text: 'Build visibility, bring the right people to your business and turn attention into real opportunities.',
-    tags: ['SEO', 'Traffic', 'Content', 'Analytics', 'Conversion'],
-    featured: true,
-  },
-  {
-    number: '03',
-    label: 'Own',
-    title: 'Build something that belongs to you.',
-    text: 'Create a business, brand and digital ecosystem that you control and can continue building for years to come.',
-    tags: ['Your business', 'Your brand', 'Your customers', 'Your future'],
-  },
-]
-
-const journey = [
-  {
-    number: '01',
-    title: 'Start with an idea',
-    text: 'Every business begins somewhere. I help turn your idea into something real.',
-  },
-  {
-    number: '02',
-    title: 'Build the foundation',
-    text: 'I create the technology, brand and digital presence your business needs to move forward.',
-  },
-  {
-    number: '03',
-    title: 'Create something you own',
-    text: 'Your business, your brand, your customers and your digital assets become something you can build on for years.',
-  },
-]
-
-const reasons = [
-  {
-    icon: Target,
-    title: 'Built around your business',
-    text: "I don't believe in one-size-fits-all solutions. Your website and digital tools are built around your goals, customers and business.",
-  },
-  {
-    icon: TrendingUp,
-    title: 'Designed for growth',
-    text: 'I think beyond launch day. Your digital presence is built with SEO, scalability, performance and future growth in mind.',
-  },
-  {
-    icon: Layers3,
-    title: 'Technology + strategy',
-    text: 'A great website is only part of the equation. I combine development, design, SEO and strategy to turn your digital presence into a business asset.',
-  },
-  {
-    icon: Rocket,
-    title: 'Your success matters',
-    text: "My goal isn't simply to deliver a website and walk away. I want to help you build something that creates real opportunities.",
-  },
-]
+import ContactCta from '../components/editorial/ContactCta.jsx'
+import { AboutHero } from '../components/editorial/Heroes.jsx'
+import { Headline, Label, Reveal } from '../components/editorial/Motion.jsx'
+import Testimonials from '../components/editorial/Testimonials.jsx'
+import usePageMeta from '../components/editorial/usePageMeta.js'
+import { journey, philosophy, principles } from '../data/site.js'
 
 export default function About() {
+  usePageMeta(
+    'About Jocelyn | StartupLift Dev',
+    'I’m Jocelyn, a web developer who helps entrepreneurs and businesses turn ideas into real digital businesses: websites, web applications and dashboards, built to grow with you.',
+  )
+
   return (
-    <main className="lux-page">
-      <LuxPageHero
-        visual={<AboutVisual />}
-        eyebrow="About me"
-        title={
-          <>
-            Hi, I'm <em>Jocelyn.</em>
-          </>
-        }
-        lead="I'm a web developer who helps entrepreneurs and businesses turn ideas into real digital businesses: websites, web applications and dashboards, built to grow with you."
-      >
-        <Link to="/contact" className="lux-btn lux-btn-solid">
-          Start a project
-        </Link>
-        <Link to="/work" className="lux-btn lux-btn-ghost">
-          See my work
-        </Link>
-      </LuxPageHero>
+    <div className="ed ed-page">
+      {/* ===== HERO ===== */}
+      <AboutHero />
 
       {/* ===== STORY ===== */}
-      <section className="lux-section lux-section--alt">
-        <div className="lux-wrap lux-manifesto">
-          <Reveal>
-            <p className="lux-eyebrow lux-eyebrow--left">
-              <span /> My story
-            </p>
-            <blockquote>
-              Build something you believe in. Grow it with purpose.{' '}
-              <em>Own your future.</em>
-            </blockquote>
-          </Reveal>
+      <section className="ed-sec ed-sec--paper" aria-labelledby="story-title">
+        <div className="ed-wrap ed-split">
+          <div>
+            <Label>(01) My story</Label>
+            <Headline
+              as="h2"
+              id="story-title"
+              size="md"
+              text={'Build something\nyou believe in.\n*Own your future.*'}
+              className="ed-split-title"
+            />
+          </div>
 
-          <Reveal delay={120} className="lux-prose">
-            <p className="lux-prose-lead">
-              I'm Jocelyn, a web developer. Through StartupLift Dev I design,
+          <div>
+            <Reveal as="p" className="ed-prose-lead">
+              I’m Jocelyn, a web developer. Through StartupLift Dev I design,
               build and look after websites, web applications and dashboards,
               from the first sketch to launch day and the support after.
-            </p>
-            <p>
+            </Reveal>
+            <Reveal as="p" className="ed-prose" delay={80}>
               Starting a business can feel overwhelming. You need a brand, a
-              website, customers, technology and a way to grow — often before
-              you've even made your first sale.
-            </p>
-            <p>
-              That's where I come in. I help entrepreneurs and businesses turn
+              website, customers, technology and a way to grow, often before
+              you’ve even made your first sale.
+            </Reveal>
+            <Reveal as="p" className="ed-prose" delay={140}>
+              That’s where I come in. I help entrepreneurs and businesses turn
               ideas into real digital foundations that they can build on, grow
               with and ultimately own.
-            </p>
-            <p>
-              I don't believe your website should simply sit online. It should
+            </Reveal>
+            <Reveal as="p" className="ed-prose" delay={200}>
+              I don’t believe your website should simply sit online. It should
               become an asset that works for your business, helps people
               discover you and gives you the foundation to create something
               bigger.
-            </p>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* real client quotes, shown only once some are added in src/data/testimonials.js */}
-      <ClientTestimonials />
-
-      {/* ===== BUILD / GROW / OWN ===== */}
-      <section className="lux-section lux-section--alt">
-        <div className="lux-wrap">
-          <Reveal className="lux-section-head">
-            <p className="lux-eyebrow">
-              <span /> My mission <span />
-            </p>
-            <h2>
-              Build. Grow. <em>Own.</em>
-            </h2>
-          </Reveal>
-
-          <div className="lux-principles">
-            {principles.map((item, index) => (
-              <Reveal
-                key={item.label}
-                delay={index * 120}
-                as="article"
-                className={`lux-principle${item.featured ? ' is-featured' : ''}`}
-              >
-                <span className="lux-principle-number">{item.number}</span>
-                <p className="lux-principle-label">{item.label}</p>
-                <h3>{item.title}</h3>
-                <p>{item.text}</p>
-                <ul>
-                  {item.tags.map((tag) => (
-                    <li key={tag}>{tag}</li>
-                  ))}
-                </ul>
-              </Reveal>
-            ))}
+            </Reveal>
           </div>
         </div>
       </section>
 
-      {/* ===== JOURNEY ===== */}
-      <section className="lux-section">
-        <div className="lux-wrap">
-          <Reveal className="lux-section-head">
-            <p className="lux-eyebrow">
-              <span /> How I think <span />
-            </p>
-            <h2>
-              I'm building more than <em>websites.</em>
-            </h2>
-          </Reveal>
+      {/* ===== THE JOURNEY ===== */}
+      <section className="ed-sec ed-sec--dark" aria-labelledby="journey-title">
+        <div className="ed-wrap">
+          <div className="ed-head">
+            <div>
+              <Label>(02) The journey</Label>
+              <Headline
+                as="h2"
+                id="journey-title"
+                text={'I’m building more\nthan *websites.*'}
+              />
+            </div>
+            <Reveal as="p" className="ed-lead" delay={200}>
+              Every project follows the same arc, from a first idea to something
+              you own and can keep building on.
+            </Reveal>
+          </div>
 
-          <div className="lux-journey">
+          <ol className="ed-journey">
             {journey.map((step, index) => (
-              <Reveal key={step.number} delay={index * 120} className="lux-step">
-                <span className="lux-step-number">{step.number}</span>
+              <Reveal key={step.number} as="li" delay={index * 120}>
+                <span className="ed-journey-n" aria-hidden="true">
+                  {step.number}
+                </span>
                 <h3>{step.title}</h3>
                 <p>{step.text}</p>
               </Reveal>
             ))}
-          </div>
+          </ol>
         </div>
       </section>
 
-      {/* ===== WHY ME ===== */}
-      <section className="lux-section lux-section--alt">
-        <div className="lux-wrap">
-          <Reveal className="lux-section-head">
-            <p className="lux-eyebrow">
-              <span /> Why work with me <span />
-            </p>
-            <h2>
-              You're not just building <em>a website.</em>
-            </h2>
-            <p className="lux-lead">
-              You're building something that can grow with you. That's why I
-              combine technology, design and strategy to create digital
-              foundations built for the long term.
-            </p>
-          </Reveal>
-
-          <div className="lux-why">
-            {reasons.map((reason, index) => {
-              const Icon = reason.icon
-              return (
-                <Reveal
-                  key={reason.title}
-                  as="article"
-                  delay={(index % 2) * 120}
-                  className="lux-why-card"
-                >
-                  <span className="lux-why-icon">
-                    <Icon size={24} strokeWidth={1.4} />
-                  </span>
-                  <h3>{reason.title}</h3>
-                  <p>{reason.text}</p>
-                </Reveal>
-              )
-            })}
+      {/* ===== APPROACH & TECHNICAL PHILOSOPHY ===== */}
+      <section className="ed-sec ed-sec--paper" aria-labelledby="philosophy-title">
+        <div className="ed-wrap">
+          <div className="ed-head">
+            <div>
+              <Label>(03) Approach &amp; philosophy</Label>
+              <Headline
+                as="h2"
+                id="philosophy-title"
+                text={'You’re not just\nbuilding *a website.*'}
+              />
+            </div>
+            <Reveal as="p" className="ed-lead" delay={200}>
+              A great site is the start, not the finish. Technology, design and
+              strategy work together, so what I build is made for the long term.
+            </Reveal>
           </div>
+
+          <ul className="ed-philo">
+            {philosophy.map((item, index) => (
+              <Reveal key={item.title} as="li" delay={(index % 2) * 80}>
+                <h3>{item.title}</h3>
+                <p>{item.text}</p>
+              </Reveal>
+            ))}
+          </ul>
         </div>
       </section>
 
-      {/* ===== CLOSING ===== */}
-      <section className="lux-closing">
-        <Reveal>
-          <p className="lux-statement">
-            Build something.
-            <br />
-            Grow something.
-            <br />
-            <em>Own something.</em>
-          </p>
-
-          <div className="lux-cta">
-            <Link to="/contact" className="lux-btn lux-btn-solid">
-              Let's build together <ArrowUpRight size={16} />
-            </Link>
+      {/* ===== BUILD / GROW / OWN ===== */}
+      <section className="ed-sec ed-sec--paper" aria-labelledby="mission-title">
+        <div className="ed-wrap">
+          <div className="ed-head">
+            <div>
+              <Label>(04) My mission</Label>
+              <Headline as="h2" id="mission-title" text={'Build. Grow.\n*Own.*'} />
+            </div>
           </div>
-        </Reveal>
+
+          <ul className="ed-bgo-list">
+            {principles.map((item, index) => (
+              <Reveal key={item.label} as="li" delay={(index % 2) * 80}>
+                <h3>
+                  {item.label === 'Own' ? <span>{item.label}.</span> : `${item.label}.`}
+                </h3>
+                <div className="ed-bgo-body">
+                  <p>{item.title}</p>
+                  <p className="ed-prose">{item.text}</p>
+                  <ul className="ed-chips">
+                    {item.tags.map((tag) => (
+                      <li key={tag}>{tag}</li>
+                    ))}
+                  </ul>
+                </div>
+              </Reveal>
+            ))}
+          </ul>
+        </div>
       </section>
-    </main>
+
+      {/* real client quotes appear once some are added in src/data/testimonials.js */}
+      <Testimonials tone="dark" />
+
+      <ContactCta
+        tone="dark"
+        label="(05) Let’s talk"
+        title={'Build something.\nGrow something.\n*Own something.*'}
+        note="If you have an idea, a business or a website that needs to do more, I’d like to hear about it."
+      />
+    </div>
   )
 }

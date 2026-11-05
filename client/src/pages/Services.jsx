@@ -1,196 +1,242 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
-import { ArrowUpRight, Check } from 'lucide-react'
+import { ArrowUpRight } from 'lucide-react'
 
-import LuxPageHero from '../components/public/lux/LuxPageHero.jsx'
-import { ServicesVisual } from '../components/public/lux/HeroVisuals.jsx'
-import Reveal from '../components/public/lux/Reveal.jsx'
-import {
-  packages,
-  process,
-  recurring,
-} from '../components/public/lux/servicesData.js'
+import ContactCta from '../components/editorial/ContactCta.jsx'
+import { Headline, Label, Reveal, ScrollWords } from '../components/editorial/Motion.jsx'
+import { ServicesHero } from '../components/editorial/Heroes.jsx'
+import { enquiryMailto } from '../components/editorial/mailto.js'
+import Process from '../components/editorial/Process.jsx'
+import ServiceArt from '../components/editorial/ServiceArt.jsx'
+import usePageMeta from '../components/editorial/usePageMeta.js'
+import { packages, recurring } from '../data/pricing.js'
+import { faqs, services } from '../data/site.js'
 
 export default function Services() {
+  usePageMeta(
+    'Services | StartupLift Dev',
+    'Website design and development, full-stack web applications, e-commerce, UI/UX design, SEO and backend development, with clear packages and ongoing care plans.',
+  )
+
   return (
-    <main className="lux-page">
-      <LuxPageHero
-        visual={<ServicesVisual />}
-        eyebrow="Our services"
-        title={
-          <>
-            Build. Grow.
-            <br />
-            <em>Succeed.</em>
-          </>
-        }
-        lead="From your first website to a complete digital platform, we provide the technology and strategy your business needs to move forward. We build modern digital experiences that strengthen your brand, attract the right audience and turn online visitors into real opportunities."
-      >
-        <a href="#packages" className="lux-btn lux-btn-solid">
-          View packages
-        </a>
-        <Link to="/work" className="lux-btn lux-btn-ghost">
-          Explore our work
-        </Link>
-      </LuxPageHero>
+    <div className="ed ed-page">
+      {/* ===== HERO ===== */}
+      <ServicesHero />
+
+      {/* ===== WHY IT MATTERS ===== */}
+      <section className="ed-sec ed-sec--paper" aria-label="Why a professional website matters">
+        <div className="ed-wrap">
+          <Label>Why it matters</Label>
+          <ScrollWords
+            className="ed-statement"
+            text="Your website is often the first thing a customer meets. It is judged in seconds, so it has to look credible, load quickly and make the next step obvious. Investing in it properly is not a cost of doing business. It is how a business gets found, trusted and chosen."
+          />
+        </div>
+      </section>
+
+      {/* ===== THE SIX SERVICES, ALTERNATING ===== */}
+      {services.map((service, index) => {
+        const flip = index % 2 === 1
+        const tone = flip ? 'paper' : 'dark'
+
+        return (
+          <section
+            key={service.id}
+            id={service.id}
+            className={`ed-sec ed-sec--${tone}`}
+            aria-labelledby={`${service.id}-title`}
+          >
+            <div className={`ed-wrap ed-svc${flip ? ' ed-svc--flip' : ''}`}>
+              <div className="ed-svc-art">
+                <ServiceArt id={service.id} />
+              </div>
+
+              <div className="ed-svc-text">
+                <Reveal as="span" className="ed-svc-n" aria-hidden="true">
+                  {service.number}
+                </Reveal>
+                <h2 id={`${service.id}-title`}>{service.title}</h2>
+                <Headline
+                  as="p"
+                  className="ed-svc-headline"
+                  text={service.headline}
+                />
+                <Reveal as="p" className="ed-svc-lead" delay={120}>
+                  {service.lead}
+                </Reveal>
+
+                <Reveal className="ed-sv-value" delay={160}>
+                  <span>Why it matters</span>
+                  <p>{service.value}</p>
+                </Reveal>
+
+                <Reveal className="ed-svc-cols" delay={200}>
+                  <div>
+                    <p className="ed-mini">What’s included</p>
+                    <ul className="ed-ticks">
+                      {service.includes.map((item) => (
+                        <li key={item}>{item}</li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div>
+                    <p className="ed-mini">{service.stackLabel}</p>
+                    <ul className="ed-chips">
+                      {service.stack.map((item) => (
+                        <li key={item}>{item}</li>
+                      ))}
+                    </ul>
+                  </div>
+                </Reveal>
+
+                <Reveal className="ed-svc-actions" delay={240}>
+                  <a
+                    className="ed-btn ed-btn--solid"
+                    href={enquiryMailto(`${service.title} enquiry`)}
+                  >
+                    Discuss this service <ArrowUpRight size={16} strokeWidth={1.8} />
+                  </a>
+                </Reveal>
+              </div>
+            </div>
+          </section>
+        )
+      })}
 
       {/* ===== PACKAGES ===== */}
-      <section className="lux-section lux-section--alt" id="packages">
-        <div className="lux-wrap">
-          <Reveal className="lux-section-head">
-            <p className="lux-eyebrow">
-              <span /> Our packages <span />
-            </p>
-            <h2>
-              Build it. Grow it. <em>Own it.</em>
-            </h2>
-            <p className="lux-lead">
-              Choose the package that fits where your business is today.
-              Whether you're starting from scratch or ready to grow, we can
-              help you take the next step.
-            </p>
-          </Reveal>
+      <section className="ed-sec ed-sec--dark" id="packages" aria-labelledby="packages-title">
+        <div className="ed-wrap">
+          <div className="ed-head">
+            <div>
+              <Label>Packages</Label>
+              <Headline
+                as="h2"
+                id="packages-title"
+                text={'Build it. Grow it.\n*Own it.*'}
+              />
+            </div>
+            <Reveal as="p" className="ed-lead" delay={200}>
+              Choose the package that fits where your business is today. Whether
+              you’re starting from scratch or ready to grow, there is a clear
+              next step.
+            </Reveal>
+          </div>
 
-          <div className="lux-packages">
+          <ul className="ed-rows">
             {packages.map((pkg, index) => (
               <Reveal
                 key={pkg.id}
-                as="article"
-                delay={index * 120}
-                className={`lux-package${pkg.featured ? ' is-featured' : ''}`}
+                as="li"
+                delay={index * 80}
+                className={`ed-row${pkg.featured ? ' is-featured' : ''}`}
               >
-                {pkg.featured && (
-                  <span className="lux-package-badge">Most popular</span>
-                )}
-
-                <div className="lux-package-top">
-                  <span className="lux-package-name">{pkg.name}</span>
-                  <span className="lux-package-number">{pkg.number}</span>
+                <div className="ed-row-main">
+                  {pkg.featured && <span className="ed-row-flag">Most popular</span>}
+                  <h3>{pkg.name}</h3>
+                  <p className="ed-row-title">{pkg.title}</p>
+                  <p>{pkg.description}</p>
                 </div>
 
-                <h3>{pkg.title}</h3>
-                <p className="lux-package-desc">{pkg.description}</p>
-
-                <p className="lux-package-price">{pkg.price}</p>
-
-                <ul className="lux-checks">
+                <ul className="ed-ticks ed-row-list">
                   {pkg.features.map((feature) => (
-                    <li key={feature}>
-                      <Check size={16} strokeWidth={2} />
-                      {feature}
-                    </li>
+                    <li key={feature}>{feature}</li>
                   ))}
                 </ul>
 
-                <Link
-                  to="/contact"
-                  className={`lux-btn ${
-                    pkg.featured ? 'lux-btn-solid' : 'lux-btn-ghost'
-                  }`}
-                >
-                  {pkg.button}
-                </Link>
+                <div className="ed-row-buy">
+                  <p className="ed-row-price">
+                    {pkg.price}
+                    <small>{pkg.number === '03' ? 'Quoted per project' : 'Starting range'}</small>
+                  </p>
+                  <a
+                    className={`ed-btn${pkg.featured ? ' ed-btn--solid' : ''}`}
+                    href={enquiryMailto(`${pkg.name} package enquiry`)}
+                  >
+                    {pkg.button}
+                  </a>
+                </div>
               </Reveal>
             ))}
+          </ul>
+        </div>
+      </section>
+
+      {/* ===== ONGOING CARE ===== */}
+      <section className="ed-sec ed-sec--paper" aria-labelledby="care-title">
+        <div className="ed-wrap">
+          <div className="ed-head">
+            <div>
+              <Label>Ongoing support</Label>
+              <Headline
+                as="h2"
+                id="care-title"
+                text={'Don’t just launch.\n*Keep growing.*'}
+              />
+            </div>
+            <Reveal as="p" className="ed-lead" delay={200}>
+              Your website is the beginning, not the end. Keep your digital
+              presence secure, visible and growing with ongoing support.
+            </Reveal>
           </div>
+
+          <ul className="ed-rows">
+            {recurring.map((plan, index) => (
+              <Reveal key={plan.name} as="li" delay={index * 80} className="ed-row">
+                <div className="ed-row-main">
+                  <h3>{plan.name}</h3>
+                  <p>{plan.description}</p>
+                </div>
+
+                <ul className="ed-ticks ed-row-list">
+                  {plan.features.map((feature) => (
+                    <li key={feature}>{feature}</li>
+                  ))}
+                </ul>
+
+                <div className="ed-row-buy">
+                  <p className="ed-row-price">
+                    {plan.price}
+                    <small>{plan.period}</small>
+                  </p>
+                  <a className="ed-btn" href={enquiryMailto(`${plan.name} plan enquiry`)}>
+                    Ask about this
+                  </a>
+                </div>
+              </Reveal>
+            ))}
+          </ul>
         </div>
       </section>
 
       {/* ===== PROCESS ===== */}
-      <section className="lux-section">
-        <div className="lux-wrap">
-          <Reveal className="lux-section-head">
-            <p className="lux-eyebrow">
-              <span /> How we work <span />
-            </p>
-            <h2>
-              A clear path from idea to <em>launch.</em>
-            </h2>
-          </Reveal>
+      <Process label="How we’ll work" />
 
-          <div className="lux-process">
-            {process.map((step, index) => (
-              <Reveal key={step.number} delay={index * 100} className="lux-step">
-                <span className="lux-step-number">{step.number}</span>
-                <h3>{step.title}</h3>
-                <p>{step.text}</p>
-              </Reveal>
-            ))}
+      {/* ===== FAQ ===== */}
+      <section className="ed-sec ed-sec--paper" aria-labelledby="faq-title">
+        <div className="ed-wrap">
+          <div className="ed-head">
+            <div>
+              <Label>Good to know</Label>
+              <Headline as="h2" id="faq-title" text={'Questions,\n*answered.*'} />
+            </div>
           </div>
+
+          <Reveal className="ed-faq">
+            {faqs.map((item) => (
+              <details key={item.q}>
+                <summary>{item.q}</summary>
+                <p>{item.a}</p>
+              </details>
+            ))}
+          </Reveal>
         </div>
       </section>
 
-      {/* ===== ONGOING SUPPORT ===== */}
-      <section className="lux-section lux-section--alt">
-        <div className="lux-wrap">
-          <Reveal className="lux-section-head">
-            <p className="lux-eyebrow">
-              <span /> Ongoing support <span />
-            </p>
-            <h2>
-              Don't just launch. <em>Keep growing.</em>
-            </h2>
-            <p className="lux-lead">
-              Your website is the beginning, not the end. Keep your digital
-              presence secure, visible and growing with ongoing StartupLift
-              support.
-            </p>
-          </Reveal>
-
-          <div className="lux-recurring">
-            {recurring.map((plan, index) => (
-              <Reveal
-                key={plan.name}
-                as="article"
-                delay={index * 120}
-                className="lux-recurring-card"
-              >
-                <span className="lux-package-number">{plan.number}</span>
-                <h3>{plan.name}</h3>
-                <p className="lux-package-desc">{plan.description}</p>
-
-                <p className="lux-recurring-price">
-                  <strong>{plan.price}</strong> <span>{plan.period}</span>
-                </p>
-
-                <ul className="lux-checks">
-                  {plan.features.map((feature) => (
-                    <li key={feature}>
-                      <Check size={16} strokeWidth={2} />
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-
-                <Link to="/contact" className="lux-link">
-                  Learn more <ArrowUpRight size={16} />
-                </Link>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ===== CLOSING ===== */}
-      <section className="lux-closing">
-        <Reveal>
-          <p className="lux-eyebrow">
-            <span /> Not sure where to start? <span />
-          </p>
-          <h2>
-            Let's figure out <em>your next step.</em>
-          </h2>
-          <p className="lux-lead">
-            Tell us about your business, your goals and where you want to go.
-            We'll help you determine the right solution.
-          </p>
-          <div className="lux-cta">
-            <Link to="/contact" className="lux-btn lux-btn-solid">
-              Get a free consultation
-            </Link>
-          </div>
-        </Reveal>
-      </section>
-    </main>
+      <ContactCta
+        tone="dark"
+        label="Not sure where to start?"
+        title={'Let’s work out\n*your next step.*'}
+        note="Tell me about your business, your goals and where you want to go, and I’ll help you decide on the right solution."
+      />
+    </div>
   )
 }

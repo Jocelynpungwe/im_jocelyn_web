@@ -1,66 +1,41 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 
 import PortfolioHero from '../components/public/PortfolioHero.jsx'
-import PortfolioShowcase from '../components/public/PortfolioShowcase.jsx'
-import { ClientTestimonials } from '../components/public/lux/Testimonials.jsx'
+import ContactCta from '../components/editorial/ContactCta.jsx'
 import {
-  Belief,
-  Capabilities,
-  Faq,
+  AboutPreview,
+  FeaturedWork,
   Intro,
-  Numbers,
-  ProcessSteps,
-} from '../components/public/lux/HomeSections.jsx'
+  ServicesSection,
+} from '../components/editorial/HomeSections.jsx'
+import Process from '../components/editorial/Process.jsx'
+import Testimonials from '../components/editorial/Testimonials.jsx'
+import usePageMeta from '../components/editorial/usePageMeta.js'
 
 export default function Home() {
+  usePageMeta(
+    'StartupLift Dev | Web developer for growing businesses',
+    'I design, build and look after websites, web applications and dashboards for entrepreneurs and growing businesses, from the first sketch to launch day and the support after.',
+  )
+
   return (
     <div className="home-page">
-      {/* ================= SCROLL-STORY HERO ================= */}
+      {/* ================= SCROLL-STORY HERO (protected: do not modify) ================= */}
       <PortfolioHero />
 
-      {/* ================= INTRO ================= */}
-      <Intro />
+      {/* ================= EVERYTHING BELOW THE HERO ================= */}
+      <div className="ed">
+        <Intro />
+        <FeaturedWork />
+        <ServicesSection />
+        <Process />
+        <AboutPreview />
 
-      {/* ================= WHAT I BUILD ================= */}
-      <Capabilities />
+        {/* real client quotes appear here once some are added in src/data/testimonials.js */}
+        <Testimonials tone="dark" />
 
-      {/* ================= SELECTED WORK ================= */}
-      <PortfolioShowcase />
-
-      {/* ================= NUMBERS ================= */}
-      <Numbers />
-
-      {/* ================= PROCESS ================= */}
-      <ProcessSteps />
-
-      {/* ================= BELIEF ================= */}
-      <Belief />
-
-      {/* ================= CLIENT TESTIMONIALS (appear once real ones are added) ================= */}
-      <ClientTestimonials />
-
-      {/* ================= FAQ ================= */}
-      <Faq />
-
-      {/* ================= CLOSING CTA ================= */}
-      <section className="lux-closing">
-        <p className="lux-eyebrow">
-          <span /> Let's work together <span />
-        </p>
-
-        <h2>
-          Have a project that deserves
-          <br />
-          to look <em>exceptional?</em>
-        </h2>
-
-        <div className="lux-cta">
-          <Link to="/contact" className="lux-btn lux-btn-solid">
-            Start a project
-          </Link>
-        </div>
-      </section>
+        <ContactCta />
+      </div>
     </div>
   )
 }

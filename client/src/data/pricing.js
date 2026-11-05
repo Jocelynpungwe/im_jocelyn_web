@@ -1,3 +1,5 @@
+/* Packages and ongoing plans shown on the services page. */
+
 export const packages = [
   {
     id: 'essential',
@@ -57,7 +59,7 @@ export const recurring = [
     name: 'Care',
     description: 'Website maintenance & support',
     price: '$15 – $25',
-    period: '/ month',
+    period: 'per month',
     features: [
       'Website updates',
       'Backups',
@@ -96,28 +98,5 @@ export const recurring = [
       'Conversion optimization',
       'Monthly reporting',
     ],
-  },
-]
-
-export const process = [
-  {
-    number: '01',
-    title: 'Discover',
-    text: 'We learn your business, your customers and what you want the website to achieve.',
-  },
-  {
-    number: '02',
-    title: 'Design',
-    text: 'A look and feel built around your brand, shaped to earn trust at first glance.',
-  },
-  {
-    number: '03',
-    title: 'Build',
-    text: 'Fast, responsive and search-ready, built with technology that can grow with you.',
-  },
-  {
-    number: '04',
-    title: 'Launch & grow',
-    text: 'We launch it, then help you get found, improve it and keep it healthy.',
   },
 ]
